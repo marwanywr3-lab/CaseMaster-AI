@@ -5,28 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     
-    <!-- Meta Security & Identity -->
     <title>محرك التحقيق الجنائي المتقدم | Forensic Investigation Engine</title>
     <meta name="description" content="منصة تفاعلية احترافية لمحاكاة التحقيقات الجنائية والاستجوابات القانونية مدعومة بنماذج الذكاء الاصطناعي التوليدي من Google Gemini." />
     <meta name="theme-color" content="#09090b" />
     <meta name="color-scheme" content="dark" />
     <meta name="robots" content="noindex, nofollow" />
 
-    <!-- Open Graph / Meta Protocol -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="محرك التحقيق الجنائي المتقدم" />
-    <meta property="og:description" content="محاكاة مسارح الجرائم، استجواب الشهود، والتحليل الجنائي القانوني الفوري." />
-
-    <!-- Favicon & Icons -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f59e0b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3Cpath d='M11 8v6'%3E%3C/path%3E%3Cpath d='M8 11h6'%3E%3C/path%3E%3C/svg%3E" />
 
-    <!-- Font Resource Optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://generativelanguage.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=JetBrains+Mono:wght@400;500;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
 
-    <!-- Inline Critical Style & Investigation CRT Texture -->
     <style>
       :root {
         --color-bg-base: #09090b;
@@ -47,14 +38,11 @@
         overflow-x: hidden;
       }
 
-      /* CRT Scanline & Grain Subtle Overlay */
+      /* خطوط المسح والنسيج الجنائي */
       body::before {
         content: " ";
         position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
+        inset: 0;
         background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
         z-index: 9999;
         background-size: 100% 4px, 6px 100%;
@@ -62,12 +50,10 @@
         opacity: 0.45;
       }
 
-      /* Noise Overlay */
       body::after {
         content: "";
         position: fixed;
-        top: 0;
-        left: 0;
+        inset: 0;
         width: 100vw;
         height: 100vh;
         background: radial-gradient(circle at center, transparent 0%, rgba(9, 9, 11, 0.8) 100%);
@@ -75,7 +61,7 @@
         z-index: 9998;
       }
 
-      /* Critical Fallback Loading Screen */
+      /* شاشة التحميل التمهيدية */
       #app-terminal-boot {
         position: fixed;
         inset: 0;
@@ -129,7 +115,6 @@
         100% { left: 100%; }
       }
 
-      /* Custom High-Precision Scrollbar */
       ::-webkit-scrollbar {
         width: 6px;
         height: 6px;
@@ -147,7 +132,7 @@
     </style>
   </head>
   <body class="bg-zinc-950 text-zinc-100 antialiased selection:bg-amber-500/30 selection:text-amber-200">
-    <!-- Boot Telemetry Display (Removes automatically once React mounts) -->
+    <!-- شاشة الإقلاع المؤقتة -->
     <div id="app-terminal-boot">
       <div class="terminal-badge">FORENSIC ENGINE OS // v2.5</div>
       <div style="font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; color: #fafafa;">
@@ -159,10 +144,26 @@
       <div class="boot-loader"></div>
     </div>
 
-    <!-- Application Mounting Root -->
+    <!-- كود إخفاء الشاشة تلقائياً دون انتظار -->
+    <script>
+      (function() {
+        const removeBoot = () => {
+          const el = document.getElementById('app-terminal-boot');
+          if (el) {
+            el.style.opacity = '0';
+            el.style.visibility = 'hidden';
+            setTimeout(() => { if (el) el.remove(); }, 400);
+          }
+        };
+        // إخفاء فوري بعد ثانية وربع كحد أقصى مهما حدث في التطبيق
+        setTimeout(removeBoot, 1200);
+        window.addEventListener('DOMContentLoaded', () => setTimeout(removeBoot, 600));
+      })();
+    </script>
+
+    <!-- العنصر الجذري لـ React -->
     <div id="root" class="relative z-10 min-h-screen flex flex-col"></div>
 
-    <!-- Application Entry Point -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
