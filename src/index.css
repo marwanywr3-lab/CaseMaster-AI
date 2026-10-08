@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-noir-950 text-noir-100 font-sans selection:bg-amber-500/20 selection:text-amber-200;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* تخصيص مؤشرات الإدخال والاختيار */
+  input, textarea, select {
+    @apply outline-none transition-colors duration-200;
+  }
+}
+
+@layer components {
+  /* بطاقات التحقيق الحصرية */
+  .dossier-panel {
+    @apply bg-noir-900/90 border border-noir-700/60 rounded-xl backdrop-blur-md shadow-noir-card;
+  }
+
+  .dossier-header {
+    @apply px-4 py-3 border-b border-noir-700/60 flex items-center justify-between text-xs font-mono uppercase tracking-wider text-noir-400 bg-noir-850/60 rounded-t-xl;
+  }
+
+  /* أزرار العمليات الجنائية */
+  .btn-dossier {
+    @apply inline-flex items-center justify-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg transition-all duration-200 border;
+  }
+
+  .btn-dossier-primary {
+    @apply btn-dossier bg-amber-500/15 border-amber-500/40 text-amber-300 hover:bg-amber-500/25 hover:border-amber-400 active:scale-[0.98];
+  }
+
+  .btn-dossier-danger {
+    @apply btn-dossier bg-red-500/15 border-red-500/40 text-red-300 hover:bg-red-500/25 hover:border-red-400 active:scale-[0.98];
+  }
+
+  .btn-dossier-neutral {
+    @apply btn-dossier bg-noir-800 border-noir-700 text-noir-300 hover:bg-noir-700 hover:text-noir-100 hover:border-noir-600 active:scale-[0.98];
+  }
+
+  /* تأثير ختم سري للغاية */
+  .classified-stamp {
+    @apply inline-block px-2 py-0.5 border border-red-600/60 text-red-400 font-mono text-[10px] tracking-widest uppercase rounded -rotate-2 select-none;
+  }
+}
+
+/* تخصيص شريط التمرير للوحات الشات وسجل الأدلة */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(64, 64, 84, 0.4);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(103, 103, 128, 0.6);
+}
